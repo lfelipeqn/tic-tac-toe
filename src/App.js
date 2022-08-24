@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import React, {useState, useEffect, useRef} from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
+import TextField from '@mui/material/TextField';
 
 
 const App = () => {
@@ -83,7 +83,6 @@ const App = () => {
   useEffect(()=>{
     setData(['','','','','','','','','']);
     setTurno('X')
-    console.log(games);
   },[reset,iswin,games])
 
   return (
@@ -94,9 +93,24 @@ const App = () => {
     <Grid container spacing={0.5} justifyContent="center"
   alignItems="center">
       <Grid item xs={12}>
-      <Chip style={{backgroundColor:'black', color:'white'}} label={"X:"+games.X} size="medium"/>
-      <Chip style={{backgroundColor:'black', color:'white'}} label={"O:"+games.O} size="medium"/>
-      <Chip style={{backgroundColor:'black', color:'white'}} label={"Empate:"+games.tie} size="medium" />
+      <TextField
+          id="x-win"
+          label="Juegos Ganados X"
+          value={games.X}
+          style={{margin:'5px'}}
+        />
+        <TextField
+          id="is-tie"
+          label="Juegos Empatados"
+          value={games.tie}
+          style={{margin:'5px'}}
+        />
+        <TextField
+          id="o-win"
+          label="Juegos Ganados O"
+          value={games.O}
+          style={{margin:'5px'}}
+        />
       <br/><br/>
         {(iswin === "X" || iswin === "O") ? 
           <Alert icon={false} variant="filled" severity="success">El Ganador es: <span style={{fontWeight:'bold'}}>{iswin}</span></Alert> : 
@@ -121,7 +135,7 @@ const App = () => {
       </Grid>
       <Grid item xs={6}>
         <br />
-        <Button variant="contained" size="small" fullWidth={true} color="error" onClick={()=>{reiniciar(true)}}>REINICIAR JUEGO</Button>
+        <Button variant="contained" size="small" fullWidth={true} color="error" onClick={()=>{reiniciar(true)}}>REINICIAR</Button>
       </Grid>
     </Grid>
     </Box>
